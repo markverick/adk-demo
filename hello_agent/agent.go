@@ -1,24 +1,24 @@
 package main
 
 import (
-    "context"
-    "log"
-    "os"
+	"context"
+	"log"
+	"os"
 
-    "google.golang.org/adk/agent"
-    "google.golang.org/adk/agent/llmagent"
-    "google.golang.org/adk/cmd/launcher"
-    "google.golang.org/adk/cmd/launcher/full"
-    "google.golang.org/adk/model/gemini"
-    "google.golang.org/adk/tool"
-    "google.golang.org/adk/tool/geminitool"
-    "google.golang.org/genai"
+	"google.golang.org/adk/agent"
+	"google.golang.org/adk/agent/llmagent"
+	"google.golang.org/adk/cmd/launcher"
+	"google.golang.org/adk/cmd/launcher/full"
+	"google.golang.org/adk/model/gemini"
+	"google.golang.org/adk/tool"
+	"google.golang.org/adk/tool/geminitool"
+	"google.golang.org/genai"
 )
 
 func main() {
     ctx := context.Background()
 
-    model, err := gemini.NewModel(ctx, "gemini-2.5-flash-lite", &genai.ClientConfig{
+    model, err := gemini.NewModel(ctx, os.Getenv("LLM_MODEL"), &genai.ClientConfig{
         APIKey: os.Getenv("GOOGLE_API_KEY"),
     })
     if err != nil {
